@@ -1,0 +1,657 @@
+﻿<export culture="en-US" version="1">
+  <pagetypes>
+    <ArrayOfPageType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <PageType>
+        <ID>33</ID>
+        <GUID>de67d4e6-2119-4c35-86d8-e68fdbd47467</GUID>
+        <Name>[Overlook] Standard page</Name>
+        <Description>Standard page type used by iPhone</Description>
+        <FileName>/Templates/DemoSite/Pages/OrdinaryPage.aspx</FileName>
+        <ExportableFileName>~/Templates/DemoSite/Pages/OrdinaryPage.aspx</ExportableFileName>
+        <IsAvailable>true</IsAvailable>
+        <SortOrder>100</SortOrder>
+        <Defaults>
+          <StartPublishOffset />
+          <StopPublishOffset />
+          <VisibleInMenu>true</VisibleInMenu>
+          <PeerOrder>-1</PeerOrder>
+          <ChildOrderRule>None</ChildOrderRule>
+          <ArchivePageLink>
+            <ID>0</ID>
+            <WorkID>0</WorkID>
+          </ArchivePageLink>
+          <DefaultFrame>
+            <ID>0</ID>
+            <Name />
+            <Description />
+            <IsSystemFrame>false</IsSystemFrame>
+          </DefaultFrame>
+        </Defaults>
+        <DefaultStartPublishOffset />
+        <DefaultStopPublishOffset />
+        <DefaultVisibleInMenu>true</DefaultVisibleInMenu>
+        <DefaultPeerOrder>-1</DefaultPeerOrder>
+        <DefaultChildOrderRule>None</DefaultChildOrderRule>
+        <DefaultArchivePageLink>
+          <ID>0</ID>
+          <WorkID>0</WorkID>
+        </DefaultArchivePageLink>
+        <DefaultFrameID>0</DefaultFrameID>
+        <AllowedPageTypes>
+          <int>5</int>
+          <int>6</int>
+          <int>7</int>
+          <int>8</int>
+          <int>9</int>
+          <int>10</int>
+          <int>11</int>
+          <int>12</int>
+          <int>13</int>
+          <int>14</int>
+          <int>15</int>
+          <int>16</int>
+          <int>17</int>
+          <int>18</int>
+          <int>19</int>
+          <int>20</int>
+          <int>21</int>
+          <int>22</int>
+          <int>23</int>
+          <int>24</int>
+          <int>25</int>
+          <int>26</int>
+          <int>27</int>
+          <int>28</int>
+          <int>29</int>
+          <int>30</int>
+          <int>33</int>
+        </AllowedPageTypes>
+        <AllowedPageTypeNames>
+          <string>[ExtensionSys] Personalization Container</string>
+          <string>[ExtensionSys] 2 Column divider</string>
+          <string>[ExtensionSys] 3 Column divider</string>
+          <string>[ExtensionSys] 75%-25% Column divider</string>
+          <string>[ExtensionSys] Article</string>
+          <string>[ExtensionSys] Booking filter</string>
+          <string>[ExtensionSys] Carousel</string>
+          <string>[ExtensionSys] Club blogs</string>
+          <string>[ExtensionSys] Club events</string>
+          <string>[ExtensionSys] Dynamic Block</string>
+          <string>[ExtensionSys] Form</string>
+          <string>[ExtensionSys] Horizontal line</string>
+          <string>[ExtensionSys] Image</string>
+          <string>[ExtensionSys] Interest-based function</string>
+          <string>[ExtensionSys] Latest comments</string>
+          <string>[ExtensionSys] Latest images</string>
+          <string>[ExtensionSys] Listing</string>
+          <string>[ExtensionSys] Padding block</string>
+          <string>[ExtensionSys] Product</string>
+          <string>[ExtensionSys] Product listing</string>
+          <string>[ExtensionSys] RSS feed</string>
+          <string>[ExtensionSys] Teaser</string>
+          <string>[ExtensionSys] Twitter search</string>
+          <string>[ExtensionSys] YouTube video</string>
+          <string>[ExtensionSys] Related activites</string>
+          <string>[ExtensionSys] Club info</string>
+          <string>[Overlook] Standard page</string>
+        </AllowedPageTypeNames>
+        <Definitions>
+          <PageDefinition>
+            <ID>159</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>Heading</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Heading</EditCaption>
+            <HelpText>Specify a heading that will present the main title of this page. If this property is not set, the page name will be used as a heading instead.</HelpText>
+            <FieldOrder>1</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>160</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>MainBody</Name>
+            <Type>
+              <ID>26</ID>
+              <DataType>LongString</DataType>
+              <Name>XhtmlString</Name>
+              <TypeName>EPiServer.SpecializedProperties.PropertyXhtmlString</TypeName>
+              <AssemblyName>EPiServer</AssemblyName>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Main body</EditCaption>
+            <HelpText>The main body will be shown in the main content area of the page. You can insert for example text, images and tables, using the XHTML-editor.</HelpText>
+            <FieldOrder>2</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>161</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>Image</Name>
+            <Type>
+              <ID>30</ID>
+              <DataType>String</DataType>
+              <Name>ImageUrl</Name>
+              <TypeName>EPiServer.SpecializedProperties.PropertyImageUrl</TypeName>
+              <AssemblyName>EPiServer</AssemblyName>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Image</EditCaption>
+            <HelpText>Specify an image that will be shown on the startpage (900*341 pixels)</HelpText>
+            <FieldOrder>3</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>162</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>Listing</Name>
+            <Type>
+              <ID>4</ID>
+              <DataType>PageReference</DataType>
+              <Name>PageReference</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Listing start page</EditCaption>
+            <HelpText>Listing Start Page used to show pages</HelpText>
+            <FieldOrder>4</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>163</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>SecondaryBody</Name>
+            <Type>
+              <ID>26</ID>
+              <DataType>LongString</DataType>
+              <Name>XhtmlString</Name>
+              <TypeName>EPiServer.SpecializedProperties.PropertyXhtmlString</TypeName>
+              <AssemblyName>EPiServer</AssemblyName>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Secondary body</EditCaption>
+            <HelpText>The secondary body will be shown in the right column of the page. You can use both text and images for layout. Note that images should not be larger than the right area.</HelpText>
+            <FieldOrder>5</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>164</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>MetaKeywords</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>103</ID>
+              <Name>SEO</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>13</SortIndex>
+              <IsSystemTab>false</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Standard search words for pages</EditCaption>
+            <HelpText>Specify a comma-separated list of search words that match this page</HelpText>
+            <FieldOrder>6</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>true</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>165</ID>
+            <PageTypeID>33</PageTypeID>
+            <Name>MetaDescription</Name>
+            <Type>
+              <ID>26</ID>
+              <DataType>LongString</DataType>
+              <Name>XhtmlString</Name>
+              <TypeName>EPiServer.SpecializedProperties.PropertyXhtmlString</TypeName>
+              <AssemblyName>EPiServer</AssemblyName>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>103</ID>
+              <Name>SEO</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>13</SortIndex>
+              <IsSystemTab>false</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Page description</EditCaption>
+            <HelpText>Describe the content of the page</HelpText>
+            <FieldOrder>7</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>true</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+        </Definitions>
+        <ACL>
+          <entries>
+            <entry access="Create" entityType="Role" name="Everyone" />
+          </entries>
+        </ACL>
+      </PageType>
+      <PageType>
+        <ID>34</ID>
+        <GUID>3987799a-437b-4e5c-b7ac-ad7b7033cfde</GUID>
+        <Name>[Overlook] Booking action page</Name>
+        <Description>Page to process booking action</Description>
+        <FileName>/Templates/DemoSite/Pages/BookingAction.aspx</FileName>
+        <ExportableFileName>~/Templates/DemoSite/Pages/BookingAction.aspx</ExportableFileName>
+        <IsAvailable>true</IsAvailable>
+        <SortOrder>100</SortOrder>
+        <Defaults>
+          <StartPublishOffset />
+          <StopPublishOffset />
+          <VisibleInMenu>true</VisibleInMenu>
+          <PeerOrder>-1</PeerOrder>
+          <ChildOrderRule>None</ChildOrderRule>
+          <ArchivePageLink>
+            <ID>0</ID>
+            <WorkID>0</WorkID>
+          </ArchivePageLink>
+          <DefaultFrame>
+            <ID>0</ID>
+            <Name />
+            <Description />
+            <IsSystemFrame>false</IsSystemFrame>
+          </DefaultFrame>
+        </Defaults>
+        <DefaultStartPublishOffset />
+        <DefaultStopPublishOffset />
+        <DefaultVisibleInMenu>true</DefaultVisibleInMenu>
+        <DefaultPeerOrder>-1</DefaultPeerOrder>
+        <DefaultChildOrderRule>None</DefaultChildOrderRule>
+        <DefaultArchivePageLink>
+          <ID>0</ID>
+          <WorkID>0</WorkID>
+        </DefaultArchivePageLink>
+        <DefaultFrameID>0</DefaultFrameID>
+        <AllowedPageTypes>
+          <int>1</int>
+          <int>2</int>
+          <int>5</int>
+          <int>6</int>
+          <int>7</int>
+          <int>8</int>
+          <int>9</int>
+          <int>10</int>
+          <int>11</int>
+          <int>12</int>
+          <int>13</int>
+          <int>14</int>
+          <int>15</int>
+          <int>16</int>
+          <int>17</int>
+          <int>18</int>
+          <int>19</int>
+          <int>20</int>
+          <int>21</int>
+          <int>22</int>
+          <int>23</int>
+          <int>24</int>
+          <int>25</int>
+          <int>26</int>
+          <int>27</int>
+          <int>28</int>
+          <int>29</int>
+          <int>30</int>
+        </AllowedPageTypes>
+        <AllowedPageTypeNames>
+          <string>SysRoot</string>
+          <string>SysRecycleBin</string>
+          <string>[ExtensionSys] Personalization Container</string>
+          <string>[ExtensionSys] 2 Column divider</string>
+          <string>[ExtensionSys] 3 Column divider</string>
+          <string>[ExtensionSys] 75%-25% Column divider</string>
+          <string>[ExtensionSys] Article</string>
+          <string>[ExtensionSys] Booking filter</string>
+          <string>[ExtensionSys] Carousel</string>
+          <string>[ExtensionSys] Club blogs</string>
+          <string>[ExtensionSys] Club events</string>
+          <string>[ExtensionSys] Dynamic Block</string>
+          <string>[ExtensionSys] Form</string>
+          <string>[ExtensionSys] Horizontal line</string>
+          <string>[ExtensionSys] Image</string>
+          <string>[ExtensionSys] Interest-based function</string>
+          <string>[ExtensionSys] Latest comments</string>
+          <string>[ExtensionSys] Latest images</string>
+          <string>[ExtensionSys] Listing</string>
+          <string>[ExtensionSys] Padding block</string>
+          <string>[ExtensionSys] Product</string>
+          <string>[ExtensionSys] Product listing</string>
+          <string>[ExtensionSys] RSS feed</string>
+          <string>[ExtensionSys] Teaser</string>
+          <string>[ExtensionSys] Twitter search</string>
+          <string>[ExtensionSys] YouTube video</string>
+          <string>[ExtensionSys] Related activites</string>
+          <string>[ExtensionSys] Club info</string>
+        </AllowedPageTypeNames>
+        <Definitions>
+          <PageDefinition>
+            <ID>166</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>Heading</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Heading</EditCaption>
+            <HelpText>Specify a heading that will present the main title of this page. If this property is not set, the page name will be used as a heading instead.</HelpText>
+            <FieldOrder>1</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>167</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>MainBody</Name>
+            <Type>
+              <ID>26</ID>
+              <DataType>LongString</DataType>
+              <Name>XhtmlString</Name>
+              <TypeName>EPiServer.SpecializedProperties.PropertyXhtmlString</TypeName>
+              <AssemblyName>EPiServer</AssemblyName>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Main body</EditCaption>
+            <HelpText>The main body will be shown in the main content area of the page. You can insert for example text, images and tables, using the XHTML-editor.</HelpText>
+            <FieldOrder>2</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>168</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>ErrorHeading</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Error heading</EditCaption>
+            <HelpText>Heading of the error section</HelpText>
+            <FieldOrder>3</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>169</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>ErrorMainBody</Name>
+            <Type>
+              <ID>26</ID>
+              <DataType>LongString</DataType>
+              <Name>XhtmlString</Name>
+              <TypeName>EPiServer.SpecializedProperties.PropertyXhtmlString</TypeName>
+              <AssemblyName>EPiServer</AssemblyName>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Error main body</EditCaption>
+            <HelpText>Main body for the error section</HelpText>
+            <FieldOrder>4</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>170</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>DefaultFullName</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Default full name</EditCaption>
+            <HelpText>Default full name value, in case users do not enter their full name</HelpText>
+            <FieldOrder>5</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>171</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>DefaultEmail</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Default Email</EditCaption>
+            <HelpText>Default email value, in case users do not enter their email address</HelpText>
+            <FieldOrder>6</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>172</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>DefaultPhoneNumber</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Default Phone Number</EditCaption>
+            <HelpText>Default phone number, in case users do not enter their phone number</HelpText>
+            <FieldOrder>7</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>173</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>DefaultCompany</Name>
+            <Type>
+              <ID>6</ID>
+              <DataType>String</DataType>
+              <Name>String</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Default company</EditCaption>
+            <HelpText>Default company name, in case users do not enter their company name</HelpText>
+            <FieldOrder>8</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+          <PageDefinition>
+            <ID>174</ID>
+            <PageTypeID>34</PageTypeID>
+            <Name>EnableSsl</Name>
+            <Type>
+              <ID>0</ID>
+              <DataType>Boolean</DataType>
+              <Name>Boolean</Name>
+            </Type>
+            <Required>false</Required>
+            <Tab>
+              <ID>0</ID>
+              <Name>Information</Name>
+              <RequiredAccess>Read</RequiredAccess>
+              <SortIndex>10</SortIndex>
+              <IsSystemTab>true</IsSystemTab>
+            </Tab>
+            <Searchable>false</Searchable>
+            <DefaultValueType>None</DefaultValueType>
+            <EditCaption>Enable Ssl</EditCaption>
+            <HelpText>Enable or disable Secure Socket Layer when sending email</HelpText>
+            <FieldOrder>9</FieldOrder>
+            <DisplayEditUI>true</DisplayEditUI>
+            <LongStringSettings>All</LongStringSettings>
+            <LanguageSpecific>false</LanguageSpecific>
+            <SettingsID>00000000-0000-0000-0000-000000000000</SettingsID>
+          </PageDefinition>
+        </Definitions>
+        <ACL>
+          <entries>
+            <entry access="Create" entityType="Role" name="Everyone" />
+          </entries>
+        </ACL>
+      </PageType>
+    </ArrayOfPageType>
+  </pagetypes>
+  <pages />
+</export>

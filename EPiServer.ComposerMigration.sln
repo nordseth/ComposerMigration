@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiServer.ComposerMigration", "EPiServer.ComposerMigration\EPiServer.ComposerMigration.csproj", "{B47D95AE-C833-4A38-8082-BF0B4DF88957}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiServer.ComposerMigration.Test", "EPiServer.ComposerMigration.Test\EPiServer.ComposerMigration.Test.csproj", "{D157FCBD-D040-44A8-8D57-1B5C2CDDD64A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiServer.ComposerMigration.Console", "EPiServer.ComposerMigration.Console\EPiServer.ComposerMigration.Console.csproj", "{AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiServer.ComposerMigration.Import", "EPiServer.ComposerMigration.Import\EPiServer.ComposerMigration.Import.csproj", "{C2342BAC-80B7-4F4E-A897-593DFA56AE44}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354} = {AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiServer.ComposerMigration.Import.Test", "EPiServer.ComposerMigration.Import.Test\EPiServer.ComposerMigration.Import.Test.csproj", "{CCB3CBAF-F354-4585-889B-99E3AE03AD2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CCF8D63B-7AD6-4A8E-BBC0-1E4DCE0B8C5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C28364B5-66A0-4CCB-A30E-8470257F3191}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\EPiServer.ComposerMigration.nuspec = .nuget\EPiServer.ComposerMigration.nuspec
+		.nuget\nuget.config = .nuget\nuget.config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\readme.txt = .nuget\readme.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{EF6A2540-9424-42D5-A116-133482E8514B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B47D95AE-C833-4A38-8082-BF0B4DF88957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47D95AE-C833-4A38-8082-BF0B4DF88957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47D95AE-C833-4A38-8082-BF0B4DF88957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47D95AE-C833-4A38-8082-BF0B4DF88957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D157FCBD-D040-44A8-8D57-1B5C2CDDD64A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D157FCBD-D040-44A8-8D57-1B5C2CDDD64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D157FCBD-D040-44A8-8D57-1B5C2CDDD64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D157FCBD-D040-44A8-8D57-1B5C2CDDD64A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9A0AAE-90FD-4A56-8574-B6E7BBC9A354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2342BAC-80B7-4F4E-A897-593DFA56AE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2342BAC-80B7-4F4E-A897-593DFA56AE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2342BAC-80B7-4F4E-A897-593DFA56AE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2342BAC-80B7-4F4E-A897-593DFA56AE44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB3CBAF-F354-4585-889B-99E3AE03AD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB3CBAF-F354-4585-889B-99E3AE03AD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB3CBAF-F354-4585-889B-99E3AE03AD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB3CBAF-F354-4585-889B-99E3AE03AD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCB3CBAF-F354-4585-889B-99E3AE03AD2A} = {CCF8D63B-7AD6-4A8E-BBC0-1E4DCE0B8C5A}
+		{D157FCBD-D040-44A8-8D57-1B5C2CDDD64A} = {CCF8D63B-7AD6-4A8E-BBC0-1E4DCE0B8C5A}
+	EndGlobalSection
+EndGlobal

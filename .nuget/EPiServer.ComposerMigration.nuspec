@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>EPiServer.ComposerMigration</id>
+    <version>0.1.0</version>
+    <title>EPiServer ComposerMigration</title>
+    <authors>EPiServer AB</authors>
+    <owners>EPiServer AB</owners>
+    <projectUrl>http://world.episerver.com/composermigration/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A module that will intercept the Import of a content package from a Composer site and transform it to CMS 7 format.</description>
+    <releaseNotes>Initial release of Composer Migration support package.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>Composer Migration</tags>
+    <dependencies>
+      <group>
+        <dependency id="EPiServer.CMS.Core" version="[7.0.586.16]" />
+        <dependency id="EPiServer.Framework" version="[7.0.859.16]" />
+        <dependency id="Common.Logging" version="2.1.2" />
+        <dependency id="Common.Logging.Log4Net" version="2.0.1" />
+      </group>
+    </dependencies>
+    <references />
+  </metadata>
+  <files>
+    <file src="..\EPiServer.ComposerMigration.Import\bin\Release\EPiServer.ComposerMigration.dll" target="lib\Net40" />
+    <file src="..\EPiServer.ComposerMigration.Import\bin\Release\EPiServer.ComposerMigration.Import.dll" target="lib\Net40" />
+  </files>
+</package>

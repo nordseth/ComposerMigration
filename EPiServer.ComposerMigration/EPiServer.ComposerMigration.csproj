@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B47D95AE-C833-4A38-8082-BF0B4DF88957}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EPiServer.ComposerMigration</RootNamespace>
+    <AssemblyName>EPiServer.ComposerMigration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="CodeGeneration\CodeDomExtensions.cs" />
+    <Compile Include="CodeGeneration\ICodeGenerationOptions.cs" />
+    <Compile Include="ComposerProperties.cs" />
+    <Compile Include="ContentMap.cs" />
+    <Compile Include="CodeGeneration\ContentTypeCodeBuilder.cs" />
+    <Compile Include="ContentTypeMapper.cs" />
+    <Compile Include="CodeGeneration\ContentTypeWriter.cs" />
+    <Compile Include="ContentTypeNameValidator.cs" />
+    <Compile Include="DataAbstraction\FilterSortOrder.cs" />
+    <Compile Include="DataAbstraction\FunctionPickerData.cs" />
+    <Compile Include="DataAbstraction\FunctionPickerLink.cs" />
+    <Compile Include="DataAbstraction\PageTypeDefault.cs" />
+    <Compile Include="PersonalizationContainerSerializer.cs" />
+    <Compile Include="ComposerMigrationOptions.cs" />
+    <Compile Include="DataAbstraction\AccessControlEntry.cs" />
+    <Compile Include="DataAbstraction\AccessControlList.cs" />
+    <Compile Include="DataAbstraction\AccessLevel.cs" />
+    <Compile Include="DataAbstraction\ComposerContentFunctionCategory.cs" />
+    <Compile Include="DataAbstraction\ContentType.cs" />
+    <Compile Include="DataAbstraction\ContentTypeCategory.cs" />
+    <Compile Include="DataAbstraction\IComposerPage.cs" />
+    <Compile Include="DataAbstraction\PageDefinition.cs" />
+    <Compile Include="DataAbstraction\PageDefinitionType.cs" />
+    <Compile Include="DataAbstraction\PageType.cs" />
+    <Compile Include="DataAbstraction\PropertyDefinition.cs" />
+    <Compile Include="DataAbstraction\PropertyDefinitionType.cs" />
+    <Compile Include="DataAbstraction\SecurityEntityType.cs" />
+    <Compile Include="DataAbstraction\TabDefinition.cs" />
+    <Compile Include="IComposerTranformationOptions.cs" />
+    <Compile Include="CodeGeneration\IContentTypeCodeBuilder.cs" />
+    <Compile Include="IContentMap.cs" />
+    <Compile Include="IContentTypeMapper.cs" />
+    <Compile Include="CodeGeneration\IContentTypeWriter.cs" />
+    <Compile Include="IPackageReaderContext.cs" />
+    <Compile Include="IPropertyMapper.cs" />
+    <Compile Include="IXmlElementParser.cs" />
+    <Compile Include="ImportPackageReader.cs" />
+    <Compile Include="CodeGeneration\PageTypeElementParser.cs" />
+    <Compile Include="PropertyMapper.cs" />
+    <Compile Include="MemberNameValidator.cs" />
+    <Compile Include="DataAbstraction\PersonalizationContainer.cs" />
+    <Compile Include="DataAbstraction\VisitorGroup.cs" />
+    <Compile Include="DataAbstraction\ComposerContentArea.cs" />
+    <Compile Include="DataAbstraction\ComposerContentFunction.cs" />
+    <Compile Include="DataAbstraction\ComposerPage.cs" />
+    <Compile Include="DataAbstraction\ComposerContentFunctionInformation.cs" />
+    <Compile Include="DataAbstraction\IComposerContent.cs" />
+    <Compile Include="ComposerSerializer.cs" />
+    <Compile Include="DataAbstraction\ComposerPageInformation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\EPiServer.ComposerMigration.licenseheader">
+      <Link>EPiServer.ComposerMigration.licenseheader</Link>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
