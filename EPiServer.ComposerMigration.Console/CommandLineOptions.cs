@@ -52,7 +52,7 @@ namespace EPiServer.ComposerMigration
         [Option('b', "block-base-class", DefaultValue = "EPiServer.Core.BlockData", HelpText = "Base class that all block type classes will inherit from.")]
         public string BlockBaseClass { get; set; }
 
-        [Option('i', "imports", HelpText = "Namespaces that should be imported (using) in all classes. Note that some namespaces are added automatically if needed.")]
+        [OptionArray('i', "imports", HelpText = "Namespaces that should be imported (using) in all classes. Note that some namespaces are added automatically if needed.")]
         public string[] Imports { get; set; }
 
         [Option('w', "legacy-wrapper", DefaultValue = false, HelpText = "Indication if properties of unknown types should get a UIHint to force a legacy property wrapper to appear.")]
