@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EPiServer.ComposerMigration</id>
+    <version>$version$</version>
+    <title>EPiServer ComposerMigration</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>http://world.episerver.com/composermigration/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A module that will intercept the Import of a content package from a Composer site and transform it to CMS 7 format.</description>
+    <releaseNotes>Initial release of Composer Migration support package.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>Composer Migration</tags>
+  </metadata>
+  <files>
+    <file src="readme.txt" target="" />
+  </files>
+</package>

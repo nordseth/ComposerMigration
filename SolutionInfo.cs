@@ -20,7 +20,7 @@ DEALINGS IN THE SOFTWARE.
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyCompany("EPiServer")]
+[assembly: AssemblyCompany("EPiServer AB")]
 [assembly: AssemblyCopyright("Copyright © EPiServer 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

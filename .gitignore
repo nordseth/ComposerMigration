@@ -155,3 +155,4 @@ $RECYCLE.BIN/
 # =========================
 TestWeb/*
 .nuget/*.nupkg
+*.episerverdata

@@ -197,12 +197,15 @@
     <None Include="..\EPiServer.ComposerMigration.licenseheader">
       <Link>EPiServer.ComposerMigration.licenseheader</Link>
     </None>
+    <None Include="EPiServer.ComposerMigration.Import.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="readme.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir).nuget\NuGet.exe" pack "$(SolutionDir).nuget\EPiServer.ComposerMigration.nuspec" -OutputDirectory "$(SolutionDir).nuget"</PostBuildEvent>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectPath) -IncludeReferencedProjects -OutputDirectory "$(SolutionDir)Release"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
