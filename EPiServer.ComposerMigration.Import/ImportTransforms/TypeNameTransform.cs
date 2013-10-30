@@ -50,7 +50,7 @@ namespace EPiServer.ComposerMigration
         {
             TransformPageTypeName(rawContent);
             // Don't transform page type properties if we are not expecting strongly typed page types
-            if (!_options.TransformPageTypeIdentifiers && !rawContent.IsComposerFunction())
+            if (_options.TransformPageTypeIdentifiers && !rawContent.IsComposerFunction())
             {
                 TransformPropertyNames(rawContent);
             }
