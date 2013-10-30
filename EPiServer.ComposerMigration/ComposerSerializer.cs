@@ -17,12 +17,12 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE.
 */
 #endregion
-using Common.Logging;
 using System;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using log4net;
 
 namespace EPiServer.ComposerMigration
 {
@@ -31,7 +31,7 @@ namespace EPiServer.ComposerMigration
     /// </summary>
     public class ComposerSerializer
     {
-        private static readonly ILog Logger = LogManager.GetCurrentClassLogger();
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(ComposerSerializer));
 
         /// <summary>
         ///     Deserialize an object from Xml value

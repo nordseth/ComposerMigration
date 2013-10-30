@@ -24,13 +24,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using log4net;
 
 namespace EPiServer.ComposerMigration
 {
     public class ImportDataCollectorElementParser : IXmlElementParser
     {
         private const int MaxVersionSupported = 2;
-        private static readonly Common.Logging.ILog Logger = Common.Logging.LogManager.GetCurrentClassLogger();
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(ImportDataCollectorElementParser));
 
         private readonly IEnumerable<IImportDataCollector> _collectors;
         private readonly IPackageReaderContext _readerContext;

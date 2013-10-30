@@ -26,14 +26,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using log4net;
 
 namespace EPiServer.ComposerMigration.CodeGeneration
 {
     public class ContentTypeWriter : IContentTypeWriter
     {
         private const int MaxFileNameLength = 50;
-        private static readonly Common.Logging.ILog Logger = Common.Logging.LogManager.GetCurrentClassLogger();
-        private readonly IContentTypeCodeBuilder _codeBuilder;
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(ContentTypeWriter));
+		private readonly IContentTypeCodeBuilder _codeBuilder;
         private readonly CodeDomProvider _codeDomProvider;
         private readonly ICodeGenerationOptions _options;
         private readonly MemberNameValidator _memberNameValidator;

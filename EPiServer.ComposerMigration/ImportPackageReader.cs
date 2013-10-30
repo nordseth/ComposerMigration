@@ -22,14 +22,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Packaging;
 using System.Xml;
+using log4net;
 
 namespace EPiServer.ComposerMigration
 {
     public class ImportPackageReader
     {
         private const string PackageContentName = "/epix.xml";
-        private static readonly Common.Logging.ILog Logger = Common.Logging.LogManager.GetCurrentClassLogger();
-        private readonly IEnumerable<IXmlElementParser> _elementParsers;
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(ImportPackageReader));
+		private readonly IEnumerable<IXmlElementParser> _elementParsers;
         private readonly IPackageReaderContext _readerContext;
 
         public ImportPackageReader(IEnumerable<IXmlElementParser> elementParsers, IPackageReaderContext readerContext)

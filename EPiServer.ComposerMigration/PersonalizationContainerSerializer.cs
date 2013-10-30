@@ -17,18 +17,18 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE.
 */
 #endregion
-using Common.Logging;
 using EPiServer.ComposerMigration.DataAbstraction;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
 
 namespace EPiServer.ComposerMigration
 {
     public class PersonalizationContainerSerializer
     {
-        private static readonly ILog Logger = LogManager.GetCurrentClassLogger();
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(PersonalizationContainerSerializer));
 
         public virtual IEnumerable<PersonalizationContainer> Deserialize(string value)
         {

@@ -23,14 +23,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using log4net;
 
 namespace EPiServer.ComposerMigration.CodeGeneration
 {
     public class PageTypeElementParser : IXmlElementParser
     {
         private const int MaxVersionSupported = 2;
-        private static readonly Common.Logging.ILog Logger = Common.Logging.LogManager.GetCurrentClassLogger();
-        private static readonly HashSet<string> IgnoredPageTypes = new HashSet<string>(new[] { 
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(PageTypeElementParser));
+		private static readonly HashSet<string> IgnoredPageTypes = new HashSet<string>(new[] { 
             "SysRoot", 
             "SysRecycleBin",
             ComposerPageTypes.Prefix + ComposerPageTypes.GlobalFunctionEditPage,

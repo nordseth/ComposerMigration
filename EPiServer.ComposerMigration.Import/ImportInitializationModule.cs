@@ -17,7 +17,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 DEALINGS IN THE SOFTWARE.
 */
 #endregion
-using Common.Logging;
 using EPiServer.Core;
 using EPiServer.Core.Transfer;
 using EPiServer.Enterprise;
@@ -28,20 +27,20 @@ using StructureMap;
 using System;
 using System.Collections.Specialized;
 using System.Web.Configuration;
+using log4net;
 
 namespace EPiServer.ComposerMigration.Import
 {
     [ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
     public class ImportInitializationModule : IInitializableModule, IConfigurableModule
     {
-        private static ILog Logger;
-        private IContainer _container;
+		private static readonly ILog Logger = LogManager.GetLogger(typeof(ImportInitializationModule));
+		private IContainer _container;
         private bool _enabled;
 
         void IConfigurableModule.ConfigureContainer(ServiceConfigurationContext context)
         {
             _container = context.Container;
-            InitalizeLogger();
             InitializeContainer(_container);
         }
 
@@ -100,7 +99,7 @@ namespace EPiServer.ComposerMigration.Import
         {
             var transformers = ServiceLocator.Current.GetAllInstances<IImportTransform>();
 
-            Logger.Trace("Running transforms on content");
+            Logger.Info("Running transforms on content");
             foreach (var transformer in transformers)
             {
                 if (!transformer.Transform(content))
@@ -122,18 +121,6 @@ namespace EPiServer.ComposerMigration.Import
             // Create a ContentMap object that will live over the current thread/request
             IContentMap contentMap = new ContentMap();
             container.Inject<IContentMap>(contentMap);
-        }
-
-        private static void InitalizeLogger()
-        {
-            var currentAdapter = LogManager.Adapter;
-            if (LogManager.Adapter == null || LogManager.Adapter is Common.Logging.Simple.NoOpLoggerFactoryAdapter)
-            {
-                // set Adapter
-                var properties = new NameValueCollection { { "configType", "EXTERNAL" } };
-                LogManager.Adapter = new Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter(properties);
-            }
-            Logger = LogManager.GetCurrentClassLogger();
         }
 
         private static void InitializeContainer(IContainer container)

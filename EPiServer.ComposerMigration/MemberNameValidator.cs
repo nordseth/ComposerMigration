@@ -24,155 +24,155 @@ using System.Text;
 
 namespace EPiServer.ComposerMigration
 {
-    public class MemberNameValidator
-    {
-        private static readonly Dictionary<char, string> CharVisualReplacements = new Dictionary<char, string> { { 'Ð', "D" }, { 'ð', "d" }, { 'Ł', "L" }, { 'ł', "l" }, { 'ß', "sz" }, { 'Ø', "O" }, { 'ø', "o" }, { 'Æ', "AE" }, { 'æ', "ae" }, { 'Œ', "OE" }, { 'œ', "oe" } }; 
-        private static readonly string[] UnitsMap = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
-        private static readonly string[] TensMap = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+	public class MemberNameValidator
+	{
+		private static readonly Dictionary<char, string> CharVisualReplacements = new Dictionary<char, string> { { 'Ð', "D" }, { 'ð', "d" }, { 'Ł', "L" }, { 'ł', "l" }, { 'ß', "sz" }, { 'Ø', "O" }, { 'ø', "o" }, { 'Æ', "AE" }, { 'æ', "ae" }, { 'Œ', "OE" }, { 'œ', "oe" } };
+		private static readonly string[] UnitsMap = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+		private static readonly string[] TensMap = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
-        public virtual string CreateIdentifier(string name)
-        {
-            var newName = new StringBuilder();
-            bool uppercaseNext = true;
-            var initialNumber = new Queue<char>();
+		public virtual string CreateIdentifier(string name)
+		{
+			var newName = new StringBuilder();
+			bool uppercaseNext = true;
+			var initialNumber = new Queue<char>();
 
-            name = Normalize(name);
+			name = Normalize(name);
 
-            for (int i = 0; i < name.Length; i++)
-            {
-                var c = name[i];
+			for (int i = 0; i < name.Length; i++)
+			{
+				var c = name[i];
 
-                var cat = char.GetUnicodeCategory(c);
+				var cat = char.GetUnicodeCategory(c);
 
-                if (cat != UnicodeCategory.DecimalDigitNumber)
-                {
-                    ClearNumberQueue(initialNumber, newName);
-                }
+				if (cat != UnicodeCategory.DecimalDigitNumber)
+				{
+					ClearNumberQueue(initialNumber, newName);
+				}
 
-                switch (cat)
-                {
-                    case UnicodeCategory.UppercaseLetter:
-                        newName.Append(c);
-                        uppercaseNext = false;
-                        break;
-                    case UnicodeCategory.LowercaseLetter:
-                        if (uppercaseNext)
-                        {
-                            c = char.ToUpperInvariant(c);
-                            uppercaseNext = false;
-                        }
-                        newName.Append(c);
-                        break;
-                    case UnicodeCategory.DecimalDigitNumber:
-                        if (newName.Length > 0)
-                        {
-                            newName.Append(c);
-                        }
-                        else
-                        {
-                            initialNumber.Enqueue(c);
-                        }
-                        uppercaseNext = true;
-                        break;
-                    case UnicodeCategory.ConnectorPunctuation:
-                        if (c == '_')
-                        {
-                            newName.Append(c);
-                        }
-                        break;
-                    case UnicodeCategory.NonSpacingMark:
-                        break;
-                    default:
-                        uppercaseNext = true;
-                        break;
-                }
-            }
+				switch (cat)
+				{
+					case UnicodeCategory.UppercaseLetter:
+						newName.Append(c);
+						uppercaseNext = false;
+						break;
+					case UnicodeCategory.LowercaseLetter:
+						if (uppercaseNext)
+						{
+							c = char.ToUpperInvariant(c);
+							uppercaseNext = false;
+						}
+						newName.Append(c);
+						break;
+					case UnicodeCategory.DecimalDigitNumber:
+						if (newName.Length > 0)
+						{
+							newName.Append(c);
+						}
+						else
+						{
+							initialNumber.Enqueue(c);
+						}
+						uppercaseNext = true;
+						break;
+					case UnicodeCategory.ConnectorPunctuation:
+						if (c == '_')
+						{
+							newName.Append(c);
+						}
+						break;
+					case UnicodeCategory.NonSpacingMark:
+						break;
+					default:
+						uppercaseNext = true;
+						break;
+				}
+			}
 
-            return newName.ToString();
-        }
+			return newName.ToString();
+		}
 
-        private static string Normalize(string name)
-        {
-            name = name.Normalize(NormalizationForm.FormD);
+		private static string Normalize(string name)
+		{
+			name = name.Normalize(NormalizationForm.FormD);
 
-            var normalized = new StringBuilder();
+			var normalized = new StringBuilder();
 
-            for (int i = 0; i < name.Length; i++)
-            {
-                var c = name[i];
-                string replacement;
-                if (CharVisualReplacements.TryGetValue(c, out replacement))
-                {
-                    normalized.Append(replacement);
-                }
-                else
-                {
-                    normalized.Append(c);
-                }
-            }
+			for (int i = 0; i < name.Length; i++)
+			{
+				var c = name[i];
+				string replacement;
+				if (CharVisualReplacements.TryGetValue(c, out replacement))
+				{
+					normalized.Append(replacement);
+				}
+				else
+				{
+					normalized.Append(c);
+				}
+			}
 
-            return normalized.ToString();
-        }
+			return normalized.ToString();
+		}
 
-        private void ClearNumberQueue(Queue<char> queue, StringBuilder output)
-        {
-            if (queue.Count == 0)
-            {
-                return;
-            }
+		private void ClearNumberQueue(Queue<char> queue, StringBuilder output)
+		{
+			if (queue.Count == 0)
+			{
+				return;
+			}
 
-            int number;
-            if (int.TryParse(new string(queue.ToArray()), out number))
-            {
-                output.Append(NumberToWords(number));
-            }
-            queue.Clear();
-        }
+			int number;
+			if (int.TryParse(new string(queue.ToArray()), out number))
+			{
+				output.Append(NumberToWords(number));
+			}
+			queue.Clear();
+		}
 
-        private static string NumberToWords(int number)
-        {
-            if (number == 0)
-                return "Zero";
+		private static string NumberToWords(int number)
+		{
+			if (number == 0)
+				return "Zero";
 
-            if (number < 0)
-                return "Minus " + NumberToWords(Math.Abs(number));
+			if (number < 0)
+				return "Minus " + NumberToWords(Math.Abs(number));
 
-            string words = "";
+			string words = "";
 
-            if ((number / 1000000) > 0)
-            {
-                words += NumberToWords(number / 1000000) + "Million";
-                number %= 1000000;
-            }
+			if ((number / 1000000) > 0)
+			{
+				words += NumberToWords(number / 1000000) + "Million";
+				number %= 1000000;
+			}
 
-            if ((number / 1000) > 0)
-            {
-                words += NumberToWords(number / 1000) + "Thousand";
-                number %= 1000;
-            }
+			if ((number / 1000) > 0)
+			{
+				words += NumberToWords(number / 1000) + "Thousand";
+				number %= 1000;
+			}
 
-            if ((number / 100) > 0)
-            {
-                words += NumberToWords(number / 100) + "Hundred";
-                number %= 100;
-            }
+			if ((number / 100) > 0)
+			{
+				words += NumberToWords(number / 100) + "Hundred";
+				number %= 100;
+			}
 
-            if (number > 0)
-            {
-                if (words != "")
-                    words += "and";
+			if (number > 0)
+			{
+				if (words != "")
+					words += "and";
 
-                if (number < 20)
-                    words += UnitsMap[number];
-                else
-                {
-                    words += TensMap[number / 10];
-                    if ((number % 10) > 0)
-                        words += UnitsMap[number % 10];
-                }
-            }
+				if (number < 20)
+					words += UnitsMap[number];
+				else
+				{
+					words += TensMap[number / 10];
+					if ((number % 10) > 0)
+						words += UnitsMap[number % 10];
+				}
+			}
 
-            return words;
-        }
-    }
+			return words;
+		}
+	}
 }
