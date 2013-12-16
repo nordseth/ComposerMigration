@@ -25,83 +25,107 @@ using EPiServer.SpecializedProperties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using log4net;
+using EPiServer.DataAbstraction;
 
 namespace EPiServer.ComposerMigration
 {
-    public class ContentAreaTransform : IImportTransform
-    {
-        private readonly IContentMap _contentMap;
-        private readonly ContentFragmentBuilder _contentFragmentBuilder;
-        private readonly IContentTransferContext _transferContext;
+	public class ContentAreaTransform : IImportTransform
+	{
+		private readonly IContentMap _contentMap;
+		private readonly ContentFragmentBuilder _contentFragmentBuilder;
+		private readonly IContentTransferContext _transferContext;
 
-        public ContentAreaTransform(IContentMap contentMap, ContentFragmentBuilder contentFragmentBuilder, IContentTransferContext transferContext)
-        {
-            _contentMap = contentMap;
-            _contentFragmentBuilder = contentFragmentBuilder;
-            _transferContext = transferContext;
-        }
+		public ContentAreaTransform(IContentMap contentMap, ContentFragmentBuilder contentFragmentBuilder, IContentTransferContext transferContext)
+		{
+			_contentMap = contentMap;
+			_contentFragmentBuilder = contentFragmentBuilder;
+			_transferContext = transferContext;
+		}
 
-        public virtual bool Transform(ITransferContentData transferContentData)
-        {
-            if (transferContentData.IsComposerContent())
-            {
-                transferContentData.ForAllContent(TransformContentAreas);
-            }
-            return true;
-        }
+		public virtual bool Transform(ITransferContentData transferContentData)
+		{
+			if (transferContentData.IsComposerContent())
+			{
+				transferContentData.ForAllContent(TransformContentAreas);
+			}
+			return true;
+		}
 
-        public virtual void TransformContentAreas(RawContent rawContent)
-        {
-            var functions = _contentMap.GetContentFunctions(rawContent.PageGuid(), rawContent.Language());
-            var cmsContentAreaTypeName = typeof(PropertyContentArea).FullName;
+		public virtual void TransformContentAreas(RawContent rawContent)
+		{
+			var functions = _contentMap.GetContentFunctions(rawContent.PageGuid(), rawContent.Language());
+			var cmsContentAreaTypeName = typeof(PropertyContentArea).FullName;
 
-            foreach (var contentAreaProperty in rawContent.Property.Where(p => p.TypeName == ComposerPropertyTypes.ContentArea))
-            {
-                // Change TypeName to CMS Content Area
-                contentAreaProperty.TypeName = cmsContentAreaTypeName;
+			IComposerPage page = null;
+			bool contentFunction = rawContent.GetProperty(ComposerProperties.ContentFunction) != null;
 
-                // Add blocks to Content Areas
-                PopulateContentArea(contentAreaProperty, functions[contentAreaProperty.Name]);
-            }
-        }
+			foreach (var contentAreaProperty in rawContent.Property.Where(p => p.TypeName == ComposerPropertyTypes.ContentArea))
+			{
+				// Change TypeName to CMS Content Area
+				contentAreaProperty.TypeName = cmsContentAreaTypeName;
 
-        public virtual void PopulateContentArea(RawProperty contentAreaProperty, IEnumerable<ComposerContentFunction> composerFunctions)
-        {
-            if (composerFunctions == null || !composerFunctions.Any())
-            {
-                contentAreaProperty.IsNull = true;
-                return;
-            }
+				// Add blocks to Content Areas
+				PopulateContentArea(contentAreaProperty, functions[contentAreaProperty.Name]);
 
-            // Populate the ContentArea property from the ContentFunction data
-            var contentArea = new ContentArea();
+				if (!contentFunction)
+				{
+					page = functions[contentAreaProperty.Name]
+						.Where(f => f.Guid != Guid.Empty)
+						.Select(f => _contentMap.GetParentPage(f.Guid))
+						.FirstOrDefault();
+				}
+			}
 
-            foreach (var block in composerFunctions)
-            {
-                var mappedGuid = GetMappedGuid(block.Guid);
-                var fragment =_contentFragmentBuilder.CreateFragment(mappedGuid, block.PersonalizationGroup, block.VisitorGroups);
-                contentArea.Fragments.Add(fragment);
-            }
+			var pageGuid = rawContent.PageGuid();
 
-            contentAreaProperty.Value = contentArea.ToInternalString();
-            contentAreaProperty.IsNull = false;
-        }
+			if (page != null)
+			{
+				Guid shadowPageGuid = page.ShadowGuid;
 
-        private Guid GetMappedGuid(Guid blockGuid)
-        {
-            if (_transferContext == null || _transferContext.KeepIdentity || _transferContext.LinkGuidMap == null)
-            {
-                return blockGuid;
-            }
+				rawContent.SetPropertyValue(MetaDataProperties.PageContentAssetsID, shadowPageGuid.ToString());
+			}
+		}
 
-            Guid mappedGuid;
-            if (!_transferContext.LinkGuidMap.TryGetValue(blockGuid, out mappedGuid))
-            {
-                mappedGuid = Guid.NewGuid();
-                _transferContext.LinkGuidMap.Add(blockGuid, mappedGuid);
-            }
-            return mappedGuid;
-        }
+		public virtual void PopulateContentArea(RawProperty contentAreaProperty, IEnumerable<ComposerContentFunction> composerFunctions)
+		{
+			composerFunctions = composerFunctions.Where(f => f.Guid != Guid.Empty);
 
-    }
+			if (composerFunctions == null || !composerFunctions.Any())
+			{
+				contentAreaProperty.IsNull = true;
+				return;
+			}
+
+			// Populate the ContentArea property from the ContentFunction data
+			var contentArea = new ContentArea();
+
+			foreach (var block in composerFunctions)
+			{
+				var mappedGuid = GetMappedGuid(block.Guid);
+				var fragment = _contentFragmentBuilder.CreateFragment(mappedGuid, block.PersonalizationGroup, block.VisitorGroups);
+				contentArea.Fragments.Add(fragment);
+			}
+
+			contentAreaProperty.Value = contentArea.ToInternalString();
+			contentAreaProperty.IsNull = false;
+		}
+
+		private Guid GetMappedGuid(Guid blockGuid)
+		{
+			if (_transferContext == null || _transferContext.KeepIdentity || _transferContext.LinkGuidMap == null)
+			{
+				return blockGuid;
+			}
+
+			Guid mappedGuid;
+			if (!_transferContext.LinkGuidMap.TryGetValue(blockGuid, out mappedGuid))
+			{
+				mappedGuid = Guid.NewGuid();
+				_transferContext.LinkGuidMap.Add(blockGuid, mappedGuid);
+			}
+			return mappedGuid;
+		}
+
+	}
 }

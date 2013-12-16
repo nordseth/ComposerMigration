@@ -32,97 +32,97 @@ using System.Text;
 
 namespace EPiServer.ComposerMigration
 {
-    public class ComposerFunctionTransform : IImportTransform
-    {
-        private readonly IContentMap _contentMap;
-        private readonly ExportLinkResolver _exportLinkResolver;
-        private readonly ComposerSerializer _composerSerializer;
-        private readonly ICollection<string> _possibleFunctionNameProperties;
-        private readonly bool _includeUnusedBlocks;
+	public class ComposerFunctionTransform : IImportTransform
+	{
+		private readonly IContentMap _contentMap;
+		private readonly ExportLinkResolver _exportLinkResolver;
+		private readonly ComposerSerializer _composerSerializer;
+		private readonly ICollection<string> _possibleFunctionNameProperties;
+		private readonly bool _includeUnusedBlocks;
 
-        public ComposerFunctionTransform(IContentMap contentMap, ComposerSerializer composerSerializer, ExportLinkResolver exportLinkResolver, IComposerImportOptions options)
-        {
-            _contentMap = contentMap;
-            _composerSerializer = composerSerializer;
-            _exportLinkResolver = exportLinkResolver;
+		public ComposerFunctionTransform(IContentMap contentMap, ComposerSerializer composerSerializer, ExportLinkResolver exportLinkResolver, IComposerImportOptions options)
+		{
+			_contentMap = contentMap;
+			_composerSerializer = composerSerializer;
+			_exportLinkResolver = exportLinkResolver;
 
-            options = options ?? ComposerImportOptions.Default;
-            _possibleFunctionNameProperties = new HashSet<string>(options.BlockNameProperties ?? Enumerable.Empty<string>());
-            _includeUnusedBlocks = options.IncludeUnusedBlocks;
-        }
+			options = options ?? ComposerImportOptions.Default;
+			_possibleFunctionNameProperties = new HashSet<string>(options.BlockNameProperties ?? Enumerable.Empty<string>());
+			_includeUnusedBlocks = options.IncludeUnusedBlocks;
+		}
 
-        public virtual bool Transform(ITransferContentData transferContentData)
-        {
-            var rawContent = transferContentData.RawContentData;
+		public virtual bool Transform(ITransferContentData transferContentData)
+		{
+			var rawContent = transferContentData.RawContentData;
 
-            var functionProperty = rawContent.GetProperty(ComposerProperties.ContentFunction);
-            if (functionProperty == null)
-            {
-                return true;
-            }
+			var functionProperty = rawContent.GetProperty(ComposerProperties.ContentFunction);
+			if (functionProperty == null)
+			{
+				return true;
+			}
 
-            // Deserialize the Extension Function Struct
-            var functionInfo = _composerSerializer.Deserialize<ComposerContentFunctionInformation>(functionProperty.Value);
+			// Deserialize the Extension Function Struct
+			var functionInfo = _composerSerializer.Deserialize<ComposerContentFunctionInformation>(functionProperty.Value);
 
-            var isGlobalBlock = functionInfo != null && functionInfo.Type == ComposerContentFunctionCategory.Global;
+			var isGlobalBlock = functionInfo != null && functionInfo.Type == ComposerContentFunctionCategory.Global;
 
-            var guid = transferContentData.RawContentData.PageGuid();
-            var parent = _contentMap.GetParentPage(guid);
+			var guid = transferContentData.RawContentData.PageGuid();
+			var parent = _contentMap.GetParentPage(guid);
 
-            // If a (non-global) block doesn't have a parent, it's an orphaned block and we won't import it
-            if (parent == null && !_includeUnusedBlocks && !isGlobalBlock)
-            {
-                return false;
-            }
+			// If a (non-global) block doesn't have a parent, it's an orphaned block and we won't import it
+			if (parent == null && !_includeUnusedBlocks && !isGlobalBlock)
+			{
+				return false;
+			}
 
-            // Move all Global and Unused blocks to the GlobalBlockFolder
-            if (isGlobalBlock || parent == null)
-            {
-                rawContent.SetPropertyValue(MetaDataProperties.PageParentLink, _exportLinkResolver.GetExportableLink(ContentReference.GlobalBlockFolder));
-            }
+			// Move all Global and Unused blocks to the GlobalBlockFolder
+			if (isGlobalBlock || parent == null)
+			{
+				rawContent.SetPropertyValue(MetaDataProperties.PageParentLink, _exportLinkResolver.GetExportableLink(ContentReference.GlobalBlockFolder));
+			}
 
-            // Update the PageName to a more friendly name
-            var property = rawContent.GetProperty(MetaDataProperties.PageName);
-            if (property != null)
-            {
-                var friendlyName = CreateFriendlyName(rawContent, functionInfo);
-                if (!string.IsNullOrEmpty(friendlyName))
-                {
-                    property.Value = friendlyName;
-                }
-            }
+			// Update the PageName to a more friendly name
+			var property = rawContent.GetProperty(MetaDataProperties.PageName);
+			if (property != null)
+			{
+				var friendlyName = CreateFriendlyName(rawContent, functionInfo);
+				if (!string.IsNullOrEmpty(friendlyName))
+				{
+					property.Value = friendlyName;
+				}
+			}
 
-            // Don't change language of Global Blocks
-            if (!isGlobalBlock && parent != null)
-            {
-                rawContent.Language(parent.Language);
-                rawContent.MasterLanguage(parent.Language);
-            } 
-            
-            return true;
-        }
+			// Don't change language of Global Blocks
+			if (!isGlobalBlock && parent != null)
+			{
+				rawContent.Language(parent.Language);
+				rawContent.MasterLanguage(parent.Language);
+			}
 
-        public virtual string CreateFriendlyName(RawContent content, ComposerContentFunctionInformation functionInfo)
-        {
-            if (functionInfo != null && !string.IsNullOrEmpty(functionInfo.Name))
-            {
-                return functionInfo.Name;
-            }
+			return true;
+		}
 
-            string friendlyName = content.PageType();
+		public virtual string CreateFriendlyName(RawContent content, ComposerContentFunctionInformation functionInfo)
+		{
+			if (functionInfo != null && !string.IsNullOrEmpty(functionInfo.Name))
+			{
+				return functionInfo.Name;
+			}
 
-            if (_possibleFunctionNameProperties.Count > 0)
-            {
-                var headingProperty = content.Property.FirstOrDefault(p => _possibleFunctionNameProperties.Contains(p.Name));
+			string friendlyName = content.PageType();
 
-                if (headingProperty != null && !headingProperty.IsNull)
-                {
-                    friendlyName += " - " + headingProperty.Value;
-                }
-            }
+			if (_possibleFunctionNameProperties.Count > 0)
+			{
+				var headingProperty = content.Property.FirstOrDefault(p => _possibleFunctionNameProperties.Contains(p.Name));
 
-            return friendlyName;
-        }
+				if (headingProperty != null && !headingProperty.IsNull)
+				{
+					friendlyName += " - " + headingProperty.Value;
+				}
+			}
 
-    }
+			return friendlyName;
+		}
+
+	}
 }

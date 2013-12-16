@@ -30,55 +30,54 @@ using System.Text;
 
 namespace EPiServer.ComposerMigration
 {
-    public class ComposerContainerTransform : IImportTransform
-    {
-        // TODO: This class could change completely if we should exlude this content for CMS 7.5.
+	public class ComposerContainerTransform : IImportTransform
+	{
+		private readonly IContentMap _contentMap;
+		private readonly ExportLinkResolver _exportLinkResolver;
+		private readonly bool _includeUnusedBlocks;
 
-        private readonly IContentMap _contentMap;
-        private readonly ExportLinkResolver _exportLinkResolver;
-        private readonly bool _includeUnusedBlocks;
+		public ComposerContainerTransform(IContentMap contentMap, ExportLinkResolver exportLinkResolver, IComposerImportOptions options)
+		{
+			_contentMap = contentMap;
+			_exportLinkResolver = exportLinkResolver;
+			options = options ?? ComposerImportOptions.Default;
+			_includeUnusedBlocks = options.IncludeUnusedBlocks;
+		}
 
-        public ComposerContainerTransform(IContentMap contentMap, ExportLinkResolver exportLinkResolver, IComposerImportOptions options)
-        {
-            _contentMap = contentMap;
-            _exportLinkResolver = exportLinkResolver;
-            options = options ?? ComposerImportOptions.Default;
-            _includeUnusedBlocks = options.IncludeUnusedBlocks;
-        }
+		public virtual bool Transform(ITransferContentData transferContentData)
+		{
+			if (!transferContentData.IsComposerContainer())
+			{
+				return true;
+			}
 
-        public virtual bool Transform(ITransferContentData transferContentData)
-        {
-            if (!transferContentData.IsComposerContainer())
-            {
-                return true;
-            }
+			var parent = _contentMap.GetParentPage(transferContentData.RawContentData.PageGuid());
 
-            var parent = _contentMap.GetParentPage(transferContentData.RawContentData.PageGuid());
+			if (parent == null && !_includeUnusedBlocks)
+			{
+				return false;
+			}
 
-            if (parent == null && !_includeUnusedBlocks)
-            {
-                return false;
-            }
+			transferContentData.ForAllContent(c => TransformContainer(c, parent));
 
-            transferContentData.ForAllContent(c => TransformContainer(c, parent));
+			return true;
+		}
 
-            return true;
-        }
+		public virtual void TransformContainer(RawContent rawContent, IComposerPage parent)
+		{
+			if (rawContent == null)
+				throw new ArgumentNullException("rawContent");
 
-        public virtual void TransformContainer(RawContent rawContent, IComposerPage parent)
-        {
-            if (rawContent == null)
-                throw new ArgumentNullException("rawContent");
+			rawContent.SetPropertyValue(MetaDataProperties.PageParentLink, _exportLinkResolver.GetExportableLink(new ContentReference(4))); // id of the SysContentAssets folder
+			rawContent.SetPropertyValue(MetaDataProperties.PageContentOwnerID, parent.Guid.ToString());
 
-            rawContent.SetPropertyValue(MetaDataProperties.PageParentLink, _exportLinkResolver.GetExportableLink(ContentReference.GlobalBlockFolder));
+			if (parent != null)
+			{
+				rawContent.PageName(parent.Name);
+				rawContent.Language(parent.Language);
+				rawContent.MasterLanguage(parent.Language);
+			}
+		}
 
-            if (parent != null)
-            {
-                rawContent.PageName(parent.Name);
-                rawContent.Language(parent.Language);
-                rawContent.MasterLanguage(parent.Language);
-            }
-        }
-
-    }
+	}
 }

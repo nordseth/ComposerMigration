@@ -27,6 +27,7 @@ namespace EPiServer.ComposerMigration
     {
         private const string ExtensionTypePrefix = "[ExtensionSys]";
         private const string BlockFolderTypeName = "SysContentFolder";
+		private const string LocalBlockFolderTypeName = "SysContentAssetFolder";
 
         private readonly MemberNameValidator _memberNameValidator;
         private readonly IComposerImportOptions _options;
@@ -69,7 +70,7 @@ namespace EPiServer.ComposerMigration
                 string typeName = pageTypeProperty.Value.Trim();
                 if (rawContent.IsComposerContainer())
                 {
-                    typeName = BlockFolderTypeName;
+					typeName = LocalBlockFolderTypeName;
                 }
                 else if (typeName.StartsWith(ExtensionTypePrefix))
                 {
